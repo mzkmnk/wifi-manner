@@ -14,13 +14,13 @@ vi.mock("@react-native-async-storage/async-storage", () => ({
 }));
 
 describe("storage", () => {
-  it("returns defaults when nothing stored", async () => {
+  it("データなしの場合はデフォルト値を返す", async () => {
     STORE.clear();
     const settings = await getSettings();
     expect(settings).toEqual(DEFAULT_SETTINGS);
   });
 
-  it("saves and retrieves settings", async () => {
+  it("設定を保存して読み込める", async () => {
     STORE.clear();
     const custom = { ...DEFAULT_SETTINGS, isEnabled: true, mediaVolume: 80 };
     await saveSettings(custom);
@@ -28,7 +28,7 @@ describe("storage", () => {
     expect(loaded).toEqual(custom);
   });
 
-  it("merges partial stored data with defaults", async () => {
+  it("部分データはデフォルト値で補完される", async () => {
     STORE.clear();
     STORE.set("@wifi-manner/settings", JSON.stringify({ isEnabled: true }));
     const settings = await getSettings();

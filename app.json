@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "wifi-manner",
+    "slug": "wifi-manner",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "ACCESS_WIFI_STATE",
+        "ACCESS_NETWORK_STATE",
+        "FOREGROUND_SERVICE"
+      ],
+      "minSdkVersion": 26
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-status-bar",
+        {
+          "style": "auto"
+        }
+      ]
+    ],
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

@@ -7,11 +7,13 @@ export interface WifiMonitoringResult {
   isRegisteredNetwork: boolean;
   currentSSID: string | null;
   isConnected: boolean;
+  /** `true` when monitoring is enabled AND connection type is wifi */
+  isWifiConnected: boolean;
 }
 
 export function useWifiMonitoring(): WifiMonitoringResult {
   const { settings } = useSettings();
-  const { ssid, isConnected } = useWifiState();
+  const { ssid, isConnected, type } = useWifiState();
 
   const isEnabled = settings?.isEnabled ?? false;
   const registeredSSIDs = settings?.registeredSSIDs ?? [];
@@ -23,9 +25,12 @@ export function useWifiMonitoring(): WifiMonitoringResult {
     return isRegisteredSSID(ssid, registeredSSIDs);
   }, [isEnabled, ssid, registeredSSIDs]);
 
+  const isWifiConnected = isEnabled && isConnected && type === "wifi";
+
   return {
     isRegisteredNetwork,
     currentSSID: isEnabled ? ssid : null,
-    isConnected: isEnabled && isConnected,
+    isConnected,
+    isWifiConnected,
   };
 }
